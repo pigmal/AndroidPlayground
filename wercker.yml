@@ -6,12 +6,13 @@ build:
     - script:
         name: show base information
         code: |
-          gradle -v
           echo $ANDROID_HOME
           echo $ANDROID_BUILD_TOOLS
           echo $ANDROID_UPDATE_FILTER
+          ./gradlew -v
+
     # A step that executes `gradle build` command
     - script:
         name: run gradle
         code: |
-          gradle --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR build
+          ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR build
