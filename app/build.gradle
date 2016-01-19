@@ -13,8 +13,8 @@ android {
     }
     buildTypes {
         all {
-            buildConfigField "String", "PARSE_APP_ID", parseAppId
-            buildConfigField "String", "PARSE_CLIENT_KEY", parseClientKey
+            buildConfigField "String", "PARSE_APP_ID", '"' + parseAppId + '"'
+            buildConfigField "String", "PARSE_CLIENT_KEY", '"' + parseClientKey + '"'
         }
         debug {
             minifyEnabled false

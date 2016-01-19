@@ -15,3 +15,7 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+# Parse
+-dontwarn com.parse.**
+-keep class com.parse.** { *; }
