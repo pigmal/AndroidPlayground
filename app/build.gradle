@@ -12,8 +12,19 @@ android {
         versionName "1.0"
     }
     buildTypes {
-        release {
+        all {
+            buildConfigField "String", "PARSE_APP_ID", parseAppId
+            buildConfigField "String", "PARSE_CLIENT_KEY", parseClientKey
+        }
+        debug {
             minifyEnabled false
+        }
+        wercker {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -24,4 +35,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
+
+    compile 'com.parse.bolts:bolts-android:1.+'
+    compile 'com.parse:parse-android:1.+'
 }
