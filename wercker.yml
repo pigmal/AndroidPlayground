@@ -15,4 +15,4 @@ build:
     - script:
         name: run gradle
         code: |
-          ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR assembleWercker
+          ./gradlew --full-stacktrace -q --project-cache-dir=$WERCKER_CACHE_DIR assembleCi
