@@ -1,13 +1,14 @@
 package com.pigmal.android.playground.androidplayground;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import java.io.IOException;
 
-import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -17,7 +18,6 @@ import okhttp3.ws.WebSocket;
 import okhttp3.ws.WebSocketCall;
 import okhttp3.ws.WebSocketListener;
 import okio.Buffer;
-import okio.BufferedSink;
 import static okhttp3.ws.WebSocket.TEXT;
 
 public class WebSocketActivity extends AppCompatActivity implements View.OnClickListener {
@@ -58,7 +58,17 @@ public class WebSocketActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-    public void initSocket(String url) {
+    private void toastOnUiThread(final String msg) {
+        final Context c = this.getApplicationContext();
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(c, msg, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void initSocket(String url) {
         OkHttpClient client = new OkHttpClient();
 
         Request request = new Request.Builder()
@@ -92,7 +102,7 @@ public class WebSocketActivity extends AppCompatActivity implements View.OnClick
 
         @Override
         public void onMessage(ResponseBody message) throws IOException {
-            Log.v(TAG, "onMessage : " + message.string());
+            toastOnUiThread("onMessage : " + message.string());
         }
 
         @Override
