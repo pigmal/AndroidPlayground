@@ -1,4 +1,4 @@
-box: gfx2015/android
+box: wercker/android
 # Build definition
 build:
   # The steps that will be executed on build
@@ -11,6 +11,10 @@ build:
           echo $ANDROID_UPDATE_FILTER
           ./gradlew -v
 
+    - script
+        name: get firebase file
+        code: |
+          wget -P app google-services.json $GOOGLE_SERVICES_JSON_URL
     # A step that executes `gradle build` command
     - script:
         name: run gradle
