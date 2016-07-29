@@ -11,7 +11,7 @@ build:
           echo $ANDROID_UPDATE_FILTER
           ./gradlew -v
 
-    - script
+    - script:
         name: get firebase file
         code: |
           wget -P app google-services.json $GOOGLE_SERVICES_JSON_URL
