@@ -1,4 +1,4 @@
-box: gfx2015/android
+box: uphyca/android
 # Build definition
 build:
   # The steps that will be executed on build
