@@ -14,7 +14,7 @@ build:
     - script:
         name: get firebase file
         code: |
-          wget $GOOGLE_SERVICES_JSON_URL
+          wget --no-check-certificate $GOOGLE_SERVICES_JSON_URL
           mv google-services.json\?dl\=0 app/google-services.json
     # A step that executes `gradle build` command
     - script:
