@@ -14,8 +14,8 @@ build:
     - script:
         name: get firebase file
         code: |
-          wget -P app google-services.json $GOOGLE_SERVICES_JSON_URL
-          echo $?
+          wget $GOOGLE_SERVICES_JSON_URL
+          mv google-services.json\?dl\=0 app/google-services.json
     # A step that executes `gradle build` command
     - script:
         name: run gradle

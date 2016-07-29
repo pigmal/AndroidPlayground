@@ -5,8 +5,8 @@ dependencies:
 
 checkout:
   post:
-    - wget -P app google-services.json $GOOGLE_SERVICES_JSON_URL
-    - echo $?
+    - wget $GOOGLE_SERVICES_JSON_URL
+    - mv google-services.json\?dl\=0 app/google-services.json
 
 test:
   override:
