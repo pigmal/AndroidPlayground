@@ -1,4 +1,4 @@
-box: gfx2015/android
+box: itog/android
 # Build definition
 build:
   # The steps that will be executed on build
@@ -11,6 +11,11 @@ build:
           echo $ANDROID_UPDATE_FILTER
           ./gradlew -v
 
+    - script:
+        name: get firebase file
+        code: |
+          wget --no-check-certificate $GOOGLE_SERVICES_JSON_URL
+          mv google-services.json\?dl\=0 app/google-services.json
     # A step that executes `gradle build` command
     - script:
         name: run gradle
