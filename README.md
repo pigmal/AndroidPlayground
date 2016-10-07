@@ -33,15 +33,10 @@ curl --header "Authorization: key=<SERVER_KEY>" \
      -d "{\"to\": \"/topics/news\",\"priority\":\"high\",\"notification\": {\"title\": \"message title\", \"body\": \"message body\", \"icon\": \"ic_stat_ic_notification\"}}"
 ```
 
-curl --header "Authorization: key=AIzaSyBwrISaDOvvNDgoXRq-pivooCt-2tRXLy8" \
-     --header Content-Type:"application/json" \
-     https://fcm.googleapis.com/fcm/send \
-     -d "{\"to\": \"/topics/news\",\"priority\":\"high\",\"notification\": {\"title\": \"this is title\", \"body\": \"this is body\", \"icon\": \"ic_stat_ic_notification\"}}"
-
 - data message
 ```
 curl --header "Authorization: key=<SERVER_KEY>" \
-     --header Content-Type:"application/json" \ｔ
+     --header Content-Type:"application/json" \
      https://fcm.googleapis.com/fcm/send \
      -d "{\"to\": \"/topics/news\",\"priority\":\"high\",\"data\": {\"custom_title\": \"data custom title\", \"custom_body\": \"data custom body\", \"icon\": \"ic_stat_ic_notification\"}}"
 ```
