@@ -1,5 +1,10 @@
 package com.pigmal.android.playground.androidplayground;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import com.google.firebase.messaging.FirebaseMessagingService;
@@ -23,11 +28,33 @@ public class FcmService extends FirebaseMessagingService {
         }
 
         if (remoteMessage.getData() != null) {
-            Log.d(TAG, "Got Data");
-            Map<String, String> data = remoteMessage.getData();
 
-            Log.d(TAG, "title: " + data.get("custom_title"));
-            Log.d(TAG, "body: " + data.get("custom_body"));
+            Map<String, String> data = remoteMessage.getData();
+            String messageId = remoteMessage.getMessageId();
+
+            Log.d(TAG, "Got FCM: " + messageId);
+
+            NotificationCompat.Builder mBuilder =
+                    new NotificationCompat.Builder(this)
+                            .setSmallIcon(R.mipmap.ic_launcher)
+                            .setContentTitle(data.get("custom_title"))
+                            .setContentText(data.get("custom_body"))
+                            .setAutoCancel(true)
+                            .setDefaults(Notification.DEFAULT_ALL);
+
+            Intent resultIntent = new Intent(this, MainActivity.class);
+            PendingIntent resultPendingIntent =
+                    PendingIntent.getActivity(
+                            this,
+                            0,
+                            resultIntent,
+                            PendingIntent.FLAG_UPDATE_CURRENT
+                    );
+            mBuilder.setContentIntent(resultPendingIntent);
+
+            int mNotificationId = 1; //(int)System.currentTimeMillis();
+            NotificationManager mNotifyMgr =
+                    (NotificationManager) getSystemService(NOTIFICATION_SERVICE);mNotifyMgr.notify(mNotificationId, mBuilder.build());
         }
     }
 }
