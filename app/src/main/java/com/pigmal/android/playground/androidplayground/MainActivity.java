@@ -11,7 +11,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.firebase.messaging.FirebaseMessaging;
-import com.parse.ParseAnalytics;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        ParseAnalytics.trackAppOpenedInBackground(getIntent());
 
         FirebaseMessaging.getInstance().subscribeToTopic("news");
 
@@ -51,6 +49,9 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_websocket:
                 startActivity(new Intent(this, WebSocketActivity.class));
+                break;
+            case R.id.action_webview:
+                startActivity(new Intent(this, WebViewActivity.class));
                 break;
             default:
                 break;

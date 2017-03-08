@@ -22,13 +22,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WebSocketActivity"></activity>
-        <service
-            android:name=".FcmService">
+        <activity android:name=".WebSocketActivity" />
+
+        <service android:name=".FcmService">
             <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <activity android:name=".WebViewActivity"></activity>
     </application>
 
 </manifest>
