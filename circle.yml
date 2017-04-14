@@ -6,8 +6,7 @@ dependencies:
   pre:
     - echo y | android update sdk --no-ui --all --filter tool,extra-android-m2repository,extra-android-support,extra-google-google_play_services,extra-google-m2repository
     - mkdir $ANDROID_HOME/licenses
-    - wget $ANDROID_SDK_LICENSE_URL
-    - mv android-sdk-license\?dl\=0 $ANDROID_HOME/licenses/android-sdk-license
+    - echo $ANDROID_SDK_LICENSE_VALUE > $ANDROID_HOME/licenses/android-sdk-license
 
 checkout:
   post:
