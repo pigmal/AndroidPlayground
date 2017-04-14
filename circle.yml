@@ -5,7 +5,7 @@ machine:
 dependencies:
   pre:
     - mkdir $ANDROID_HOME/licenses
-    - wget AMDRPOD_SDK_LICENSE_URL
+    - wget $ANDROID_SDK_LICENSE_URL
     - mv android-sdk-license\?dl\=0 $ANDROID_HOME/licenses/android-sdk-license
 
 checkout:
