@@ -53,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_webview:
                 startActivity(new Intent(this, WebViewActivity.class));
                 break;
+            case R.id.action_notification:
+                new MyNotification().notify(this);
+                break;
             default:
                 break;
         }
