@@ -1,15 +1,11 @@
 
 
-
-
 ### For CI
 Set environment variables
 
-- Parse
-```
-ORG_GRADLE_PROJECT_parseAppId
-ORG_GRADLE_PROJECT_parseClientKey
-```
+- For SDK auto-download
+Get the value from android-sdk-license under $ANDROID_HOME/licenses
+then set it as `$ANDROID_SDK_LICENSE_VALUE`
 
 - Firebase
 Put google-services.json somewhere and set the URL.
