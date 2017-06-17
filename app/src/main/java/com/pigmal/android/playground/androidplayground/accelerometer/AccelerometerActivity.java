@@ -60,6 +60,8 @@ public class AccelerometerActivity extends AppCompatActivity implements SensorEv
             + String.valueOf(event.values[1]) + ", "
             + String.valueOf(event.values[2]) + ")");
 
+        removeGravity(event.values[0], event.values[1], event.values[2]);
+
         LineData data = mChart.getLineData();
         if (data != null) {
             for (int i = 0; i < 3; i++) {
@@ -69,7 +71,7 @@ public class AccelerometerActivity extends AppCompatActivity implements SensorEv
                     data.addDataSet(set);
                 }
 
-                data.addEntry(new Entry(set.getEntryCount(), event.values[i]), i);
+                data.addEntry(new Entry(set.getEntryCount(), currentAccelerationValues[i]), i);
                 data.notifyDataChanged();
             }
 
@@ -83,6 +85,19 @@ public class AccelerometerActivity extends AppCompatActivity implements SensorEv
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
+    }
+
+    private float[] currentOrientationValues = {0.0f, 0.0f, 0.0f};
+    private float[] currentAccelerationValues = {0.0f, 0.0f, 0.0f};
+
+    void removeGravity(float x, float y, float z) {
+        currentOrientationValues[0] = x * 0.1f + currentOrientationValues[0] * (1.0f - 0.1f);
+        currentOrientationValues[1] = y * 0.1f + currentOrientationValues[1] * (1.0f - 0.1f);
+        currentOrientationValues[2] = z * 0.1f + currentOrientationValues[2] * (1.0f - 0.1f);
+
+        currentAccelerationValues[0] = x - currentOrientationValues[0];
+        currentAccelerationValues[1] = y - currentOrientationValues[1];
+        currentAccelerationValues[2] = z - currentOrientationValues[2];
     }
 
     private LineDataSet createSet(String label, int color) {
