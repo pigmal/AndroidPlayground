@@ -38,7 +38,7 @@ dependencies {
     compile "com.android.support:support-vector-drawable:${support_lib_version}"
     compile "com.android.support:animated-vector-drawable:${support_lib_version}"
 
-
+    compile 'com.github.PhilJay:MPAndroidChart:v3.0.2'
 
     compile "com.google.firebase:firebase-core:${play_services_lib_version}"
     compile "com.google.firebase:firebase-messaging:${play_services_lib_version}"
