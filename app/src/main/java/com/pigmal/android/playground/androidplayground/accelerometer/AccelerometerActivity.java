@@ -53,6 +53,8 @@ public class AccelerometerActivity extends AppCompatActivity implements SensorEv
         mSensorManager.unregisterListener(this);
     }
 
+    private long mPrevTime = 0;
+    private int mSamplingInterval = 100;
     @Override
     public void onSensorChanged(SensorEvent event) {
         Log.v(TAG, "(x, y, z) = ("
@@ -60,8 +62,15 @@ public class AccelerometerActivity extends AppCompatActivity implements SensorEv
             + String.valueOf(event.values[1]) + ", "
             + String.valueOf(event.values[2]) + ")");
 
-        removeGravity(event.values[0], event.values[1], event.values[2]);
+        long now = System.currentTimeMillis();
+        if (now - mPrevTime < mSamplingInterval) {
+            return;
+        }
+        mPrevTime = now;
 
+        removeGravity(event.values[0], event.values[1], event.values[2]);
+        float[] filtered = new float[3];
+        lpf(currentAccelerationValues, filtered);
         LineData data = mChart.getLineData();
         if (data != null) {
             for (int i = 0; i < 3; i++) {
@@ -71,7 +80,7 @@ public class AccelerometerActivity extends AppCompatActivity implements SensorEv
                     data.addDataSet(set);
                 }
 
-                data.addEntry(new Entry(set.getEntryCount(), currentAccelerationValues[i]), i);
+                data.addEntry(new Entry(set.getEntryCount(), filtered[i]), i);
                 data.notifyDataChanged();
             }
 
@@ -98,6 +107,16 @@ public class AccelerometerActivity extends AppCompatActivity implements SensorEv
         currentAccelerationValues[0] = x - currentOrientationValues[0];
         currentAccelerationValues[1] = y - currentOrientationValues[1];
         currentAccelerationValues[2] = z - currentOrientationValues[2];
+    }
+
+    static final float ALPHA = 0.25f;
+    private float[] lpf(float[] input, float[] output) {
+        if (output == null) return input;
+
+        for (int i = 0; i < input.length; i++) {
+            output[i] = output[i] + ALPHA * (input[i] - output[i]);
+        }
+        return output;
     }
 
     private LineDataSet createSet(String label, int color) {
