@@ -30,7 +30,12 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".WebViewActivity"></activity>
+        <activity android:name=".WebViewActivity" />
+        <activity
+            android:name=".accelerometer.AccelerometerActivity"
+            android:label="@string/title_activity_accelerometer"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
