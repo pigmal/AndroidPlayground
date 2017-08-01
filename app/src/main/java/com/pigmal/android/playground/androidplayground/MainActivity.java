@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.firebase.messaging.FirebaseMessaging;
+import com.pigmal.android.playground.androidplayground.accelerometer.AccelerometerActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.action_webview:
                 startActivity(new Intent(this, WebViewActivity.class));
+            case R.id.action_accelerometer:
+                startActivity(new Intent(this, AccelerometerActivity.class));
                 break;
             default:
                 break;
