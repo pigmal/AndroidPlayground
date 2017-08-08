@@ -42,7 +42,7 @@ dependencies {
 
     compile "com.google.firebase:firebase-core:${play_services_lib_version}"
     compile "com.google.firebase:firebase-messaging:${play_services_lib_version}"
-    compile 'com.parse.bolts:bolts-android:1.+'
+
     compile 'com.squareup.okhttp3:okhttp:3.2.0'
     compile 'com.squareup.okhttp3:okhttp-ws:3.2.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
